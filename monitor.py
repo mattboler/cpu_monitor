@@ -28,8 +28,8 @@ class Node:
     self.mem_publisher = rospy.Publisher(ns_join("cpu_monitor", name[1:], "mem"), UInt64, queue_size=20)
 
   def publish(self):
-    self.cpu_publisher.publish(Float32(self.proc.cpu_percent()))
-    self.mem_publisher.publish(UInt64(self.proc.memory_info().rss))
+    self.cpu_publisher.publish(Float32(self.proc.cpu_percent())) # In percent
+    self.mem_publisher.publish(UInt64(self.proc.memory_info().rss)) # In bytes
 
   def alive(self):
     return self.proc.is_running()
